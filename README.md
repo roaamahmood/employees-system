@@ -1,37 +1,70 @@
-# Important
-
-Issues of this repository are tracked on https://github.com/aspnetboilerplate/aspnetboilerplate. Please create your issues on https://github.com/aspnetboilerplate/aspnetboilerplate/issues.
-
-# Introduction
-
-This is a template to create **ASP.NET Core MVC / Angular** based startup projects for [ASP.NET Boilerplate](https://aspnetboilerplate.com/Pages/Documents). It has 2 different versions:
-
-1. [ASP.NET Core MVC & jQuery](https://aspnetboilerplate.com/Pages/Documents/Zero/Startup-Template-Core) (server rendered multi-page application).
-2. [ASP.NET Core & Angular](https://aspnetboilerplate.com/Pages/Documents/Zero/Startup-Template-Angular) (single page application).
- 
-User Interface is based on [AdminLTE theme](https://github.com/ColorlibHQ/AdminLTE).
- 
-# Download
-
-Create & download your project from https://aspnetboilerplate.com/Templates
+# Employees System
+A dashboard for managing departments and their employees using ASP.NET Boilerplate.
 
 # Screenshots
-
-#### Sample Dashboard Page
-![](_screenshots/module-zero-core-template-ui-home.png)
-
-#### User Creation Modal
-![](_screenshots/module-zero-core-template-ui-user-create-modal.png)
-
 #### Login Page
+![](_screenshots/ui-login.png)
 
-![](_screenshots/module-zero-core-template-ui-login.png)
+#### Departments Page
+![](_screenshots/ui-departments.png)
 
-# Documentation
+#### Employees Page
+![](_screenshots/ui-employees.png)
 
-* [ASP.NET Core MVC & jQuery version.](https://aspnetboilerplate.com/Pages/Documents/Zero/Startup-Template-Core)
-* [ASP.NET Core & Angular  version.](https://aspnetboilerplate.com/Pages/Documents/Zero/Startup-Template-Angular)
 
-# License
+# How to run?
+## Front-end
+### Prerequisites
+- Nodejs
+- NPM
+- Angular CLI
 
-[MIT](LICENSE).
+### Instructions
+1. Enter the `\angular` directory/folder
+2. Install node_modules:
+```
+npm install
+```
+3. Start the application locally:
+```
+npm run start
+```
+
+## Backend
+### Prerequisites
+- .NET 7.0 Runtime
+- .NET 7.0 SDK
+- Visual Studio (optional)
+- Docker (optional)
+
+### Instructions (Visual Studio)
+1. Enter the `\aspnet-core` directory/folder
+2. Open `EmployeesSystem.sln` using Visual Studio
+3. Run EmployeesSystem.Web.Host
+4. `https://localhost:44311/` will be opened in the browser with the swagger page.
+
+
+### Instructions (Command line)
+1. Enter the `\aspnet-core\src\EmployeesSystem.Web.Host\` directory/folder
+2. In the terminal, run:
+```
+dotnet run
+```
+3. Open `https://localhost:44311/` in the browser to access the swagger page.
+
+### Instructions (Docker)
+1. Enter the `\aspnet-core\src\EmployeesSystem.Web.Host\` directory/folder
+2. Build the docker image:
+```
+docker build -t employee-system .
+```
+3. Run the container:
+```
+docker run -d -p 8080:80 employee-system
+```
+
+# How to use?
+1. Open `https://localhost:4200/` to access the UI
+2. Login with:
+  - Username: admin
+  - Password: 123qwe
