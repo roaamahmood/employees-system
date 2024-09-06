@@ -1,0 +1,43 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #editDepartmentForm="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'Edit Department'"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+
+  <div class="modal-body">
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="departmentName">
+        Department Name
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="departmentName"
+          id="departmentName"
+          minlength="2"
+          maxlength="50"
+          required
+          [(ngModel)]="department.name"
+          #departmentNameModel="ngModel"
+          #departmentNameEl
+        />
+        <abp-validation-summary
+          [control]="departmentNameModel"
+          [controlEl]="departmentNameEl"
+        ></abp-validation-summary>
+      </div>
+    </div>
+  </div>
+
+  <abp-modal-footer
+    [cancelDisabled]="isLoading"
+    [saveDisabled]="!editDepartmentForm.form.valid || isLoading"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>

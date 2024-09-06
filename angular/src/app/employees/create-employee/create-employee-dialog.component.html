@@ -1,0 +1,88 @@
+<form class="form-horizontal" autocomplete="off" #createEmployeeForm="ngForm" (ngSubmit)="save()">
+  <abp-modal-header [title]="'Create new employee'" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+
+  <div class="modal-body">
+
+    <!-- Name Input -->
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="employeeName">
+        Name
+      </label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" name="employeeName" id="employeeName" minlength="2" maxlength="50"
+          required [(ngModel)]="employee.name" #employeeNameModel="ngModel" #employeeNameEl />
+        <abp-validation-summary [control]="employeeNameModel" [controlEl]="employeeNameEl"></abp-validation-summary>
+      </div>
+    </div>
+
+    <!-- Gender Select -->
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="employeeGender">
+        Gender
+      </label>
+      <div class="col-md-9">
+        <ng-select [items]="['Male', 'Female']" [(ngModel)]="employee.gender" name="employeeGender" id="employeeGender"
+          required #employeeGenderModel="ngModel" #employeeGenderEl>
+        </ng-select>
+        <abp-validation-summary [control]="employeeGenderModel" [controlEl]="employeeGenderEl"></abp-validation-summary>
+      </div>
+    </div>
+
+    <!-- Email Input -->
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="employeeEmail">
+        Email
+      </label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" name="employeeEmail" id="employeeEmail" minlength="6" maxlength="50"
+          required [(ngModel)]="employee.email" #employeeEmailModel="ngModel" #employeeEmailEl />
+        <abp-validation-summary [control]="employeeEmailModel" [controlEl]="employeeEmailEl"></abp-validation-summary>
+      </div>
+    </div>
+
+    <!-- Phone Input -->
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="employeePhone">
+        Phone Number
+      </label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" name="employeePhone" id="employeePhone"
+          oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" minlength="10"
+          maxlength="10" required [(ngModel)]="employee.phone" #employeePhoneModel="ngModel" #employeePhoneEl />
+        <abp-validation-summary [control]="employeePhoneModel" [controlEl]="employeePhoneEl"></abp-validation-summary>
+      </div>
+    </div>
+
+    <!-- Salary Input -->
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="employeeSalary">
+        Salary
+      </label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" name="employeeSalary" id="employeeSalary" minlength="2" maxlength="10"
+          oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required
+          [(ngModel)]="employee.salary" #employeeSalaryModel="ngModel" #employeeSalaryEl />
+        <abp-validation-summary [control]="employeeSalaryModel" [controlEl]="employeeSalaryEl"></abp-validation-summary>
+      </div>
+    </div>
+
+    <!-- Department Select -->
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="employeeDepartment">
+        Department
+      </label>
+      <div class="col-md-9">
+        <ng-select [items]="departments" bindLabel="name" bindValue="id" [(ngModel)]="employee.departmentId"
+          [loading]="isLoadingDepartments" name="employeeDepartment" id="employeeDepartment" required
+          #employeeDepartmentModel="ngModel" #employeeDepartmentEl>
+        </ng-select>
+        <abp-validation-summary [control]="employeeDepartmentModel"
+          [controlEl]="employeeDepartmentEl"></abp-validation-summary>
+      </div>
+    </div>
+    
+  </div>
+
+  <abp-modal-footer [cancelDisabled]="isLoading" [saveDisabled]="!createEmployeeForm.form.valid || isLoading"
+    (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+</form>

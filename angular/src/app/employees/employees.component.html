@@ -1,0 +1,91 @@
+﻿<div [@routerTransition]>
+  <section class="content px-2">
+    <div class="container-fluid">
+
+      <!-- Employees Count - START -->
+      <div class="row">
+        <div class="col-md-3 mt-3">
+          <div class="info-box">
+            <span class="info-box-icon bg-primary elevation-1">
+              <i class="fas fa-users"></i>
+            </span>
+            <div class="info-box-content">
+              <span class="info-box-text">No. of Employees</span>
+              <span class="info-box-number">
+                {{employeesCount}}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Employees Count - END -->
+
+      <!-- Employees List - START -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+
+            <!-- Employees List Header - START -->
+            <div class="card-header bg-light">
+              <div class="d-flex justify-content-between align-items-center">
+                <h3 class="card-title mb-0">Employees</h3>
+                <a (click)="openEmployeeCreateDialog()" href="javascript:;" class="btn btn-primary">
+                  <i class="fa fa-plus-square"></i>
+                  Create
+                </a>
+              </div>
+            </div>
+            <!-- Employees List Header - END -->
+
+            <!-- Employees List Body - START -->
+            <div class="card-body table-responsive p-0">
+
+              <!-- Loader -->
+              <div *ngIf="isLoading" class="spinner-border m-5 table-loader" role="status">
+                <span class="visually-hidden"></span>
+              </div>
+
+              <!-- Table -->
+              <table *ngIf="employeesCount > 0" class="table table-hover text-nowrap">
+                <thead class="bg-light">
+                  <tr>
+                    <th>Id</th>
+                    <th class="w-25">Name</th>
+                    <th>Created At</th>
+                    <th class="w-25"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr (click)="openEmployee(employee.id)" *ngFor="let employee of employees" class="table-row">
+                    <td>
+                      <span>{{employee.id}}</span>
+                    </td>
+                    <td>
+                      {{employee.name}}
+                    </td>
+                    <td>{{employee.creationTime | date: 'dd/MM/yyyy'}}</td>
+                    <td>
+                      <button (click)="openEmployeeEditDialog(employee); $event.stopPropagation()" type="button"
+                        class="btn btn-primary mx-1">Edit</button>
+                      <button (click)="deleteEmployee(employee.id); $event.stopPropagation()" type="button"
+                        class="btn btn-danger mx-1">Delete</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <!-- No data text -->
+              <div *ngIf="employeesCount === 0" class="no-employees-info">
+                No employees
+              </div>
+            </div>
+            <!-- Employees List Body - START -->
+
+          </div>
+        </div>
+      </div>
+      <!-- Employees Table - END -->
+
+    </div>
+  </section>
+</div>

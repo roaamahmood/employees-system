@@ -1,0 +1,45 @@
+﻿<div [@routerTransition]>
+    <section class="content px-2">
+        <div class="container-fluid">
+
+            <!-- Back Button - START -->
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-3 mt-3 mb-3">
+                    <button (click)="navigateBack()" class="btn btn-primary" type="button">
+                        <i class="fas fa-arrow-left mr-2"></i>
+                        Back
+                    </button>
+                </div>
+            </div>
+            <!-- Back Button - END -->
+
+            <!-- Employee Info - START -->
+            <div class="row col-12">
+                <div class="card w-100 border-0 rounded-0 d-flex">
+                    <!-- Loader -->
+                    <div *ngIf="isLoading; else employeeDetails" class="spinner-border table-loader" role="status">
+                        <span class="visually-hidden"></span>
+                    </div>
+
+                    <ng-template #employeeDetails>
+                        <div class="card-header bg-white text-dark">
+                            <h5 class="card-title mb-0">Employee Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text"><strong>Name:</strong> {{employee.name}}</p>
+                            <p class="card-text"><strong>Gender:</strong> {{employee.gender}}</p>
+                            <p class="card-text"><strong>Email:</strong> {{employee.email}}</p>
+                            <p class="card-text"><strong>Phone:</strong> {{employee.phone}}</p>
+                            <p class="card-text"><strong>Salary:</strong> {{employee.salary}}</p>
+                            <p class="card-text"><strong>Department:</strong> {{employee.department.name}}</p>
+                            <p class="card-text"><strong>Created At:</strong> {{employee.creationTime | date: 'dd/MM/yyyy'}}</p>
+                            <p *ngIf="employee.lastModificationTime" class="card-text"><strong>Last Modified At:</strong> {{employee.lastModificationTime}}</p>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+            <!-- Employee Info - END -->
+
+        </div>
+    </section>
+</div>

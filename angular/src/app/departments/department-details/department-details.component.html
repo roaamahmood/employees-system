@@ -1,0 +1,87 @@
+﻿<div [@routerTransition]>
+    <section class="content px-2">
+        <div class="container-fluid">
+
+            <!-- Back Button - START -->
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-3 mt-3 mb-3">
+                    <button (click)="navigateBack()" class="btn btn-primary" type="button">
+                        <i class="fas fa-arrow-left mr-2"></i>
+                        Back
+                    </button>
+                </div>
+            </div>
+            <!-- Back Button - END -->
+
+            <div class="row col-12">
+                <div class="card w-100 border-0 rounded-0 d-flex">
+                    <!-- Loader -->
+                    <div *ngIf="isLoading; else departmentDetails" class="spinner-border table-loader" role="status">
+                        <span class="visually-hidden"></span>
+                    </div>
+
+                    <ng-template #departmentDetails>
+                        <div class="card-header bg-white text-dark">
+                            <h5 class="card-title mb-0">{{department.name}}</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text"><strong>Number of employees:</strong> {{department.employees.length}}</p>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+
+            <!-- Employees Table - START -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Employees</h3>
+                        </div>
+
+                        <div class="card-body table-responsive p-0">
+
+                            <!-- Loader -->
+                            <div *ngIf="isLoading" class="spinner-border m-5 table-loader" role="status">
+                                <span class="visually-hidden"></span>
+                            </div>
+
+                            <!-- Table -->
+                            <table *ngIf="department?.employees?.length > 0" class="table table-hover text-nowrap">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th class="w-25">Name</th>
+                                        <th>Gender</th>
+                                        <th>Created At</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr (click)="openEmployee(employee.id)" *ngFor="let employee of department.employees" class="table-row">
+                                        <td>
+                                            <span>{{employee.id}}</span>
+                                        </td>
+                                        <td>
+                                            {{employee.name}}
+                                        </td>
+                                        <td>
+                                            {{employee.gender}}
+                                        </td>
+                                        <td>{{employee.creationTime | date: 'dd/MM/yyyy'}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <!-- No data text -->
+                            <div *ngIf="department?.employees?.length === 0" class="no-departments-info">
+                                No employees in this department
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Employees Table - END -->
+        </div>
+    </section>
+</div>
